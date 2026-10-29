@@ -1,0 +1,2 @@
+*.bin binary
+SHA256SUMS.txt text eol=lf

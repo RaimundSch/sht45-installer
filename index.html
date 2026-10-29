@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHT45 installieren</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --text: #2b2a27; --muted: #6c6860; --card: #ffffff; --line: #ddd8cd; --accent: #b4572f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1d1c1a; --text: #ece9e2; --muted: #a29e94; --card: #272623; --line: #3a3835; --accent: #e08a5f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 16px 56px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+  h2 { font-size: 1.05rem; margin: 0 0 8px; }
+  ol, ul { margin: 8px 0 0; padding-left: 1.3em; }
+  li { margin: 4px 0; }
+  .knopf { text-align: center; padding: 8px 0; }
+  .hinweis { color: var(--muted); font-size: .92rem; }
+  .en { border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 12px; color: var(--muted); font-size: .95rem; }
+  code { background: var(--bg); border-radius: 6px; padding: 1px 6px; }
+  a { color: var(--accent); }
+  esp-web-install-button { --esp-tools-button-color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>SHT45 installieren</h1>
+  <p class="sub">Firmware direkt aus dem Browser auf dein ESP-Board spielen. Es ist nichts zu installieren.</p>
+
+  <section>
+    <h2>1. Board anschließen</h2>
+    <ul>
+      <li>Schließe das Board mit einem USB-<strong>Datenkabel</strong> an den Computer an.</li>
+      <li>Schließe andere Programme, die den Anschluss benutzen (zum Beispiel einen seriellen Monitor).</li>
+      <li>Du brauchst Chrome oder Edge am Computer. Mobilgeräte werden nicht unterstützt.</li>
+    </ul>
+    <p class="en">Connect the board with a USB <strong>data</strong> cable and close other programs that use the port. Use Chrome or Edge on a computer, mobile devices are not supported.</p>
+  </section>
+
+  <section>
+    <h2>2. Installieren</h2>
+    <div class="knopf">
+      <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+    </div>
+    <ol>
+      <li>Klicke auf den Knopf „Connect“ und wähle im Fenster den Anschluss deines Boards.</li>
+      <li>Der Browser erkennt den Chip und spielt die passende Datei auf. Das dauert etwa eine Minute.</li>
+      <li>Der Dialog fragt, ob der Speicher des Boards vorher gelöscht werden soll. <strong>Beim Löschen sind auch die gespeicherten Einstellungen weg</strong> (WLAN, MQTT), das Board öffnet danach wieder sein Einrichtungs-WLAN. Bei einem neuen Board ist das richtig. Willst du nur die Firmware erneuern und deine Einstellungen behalten, wähle „nicht löschen“.</li>
+    </ol>
+    <p class="hinweis">Unterstützt: ESP32, ESP32-S3 (N16R8) und ESP8266. Andere Chips sind nicht abgedeckt.</p>
+    <p class="en">Click the button, choose your board's port, and the browser installs the matching file. The dialog asks whether to erase the board first. Erasing also deletes the saved settings (WiFi, MQTT), and the board opens its setup network again. Choose "do not erase" to update the firmware and keep your settings. Supported: ESP32, ESP32-S3 (N16R8) and ESP8266.</p>
+  </section>
+
+  <section>
+    <h2>3. Einrichten</h2>
+    <ol>
+      <li>Das Board öffnet ein WLAN ohne Passwort namens <code>SHT45-Setup-…</code>. Verbinde dein Handy oder deinen Computer damit.</li>
+      <li>Öffne <code>http://192.168.4.1</code>, falls sich die Seite nicht von selbst öffnet.</li>
+      <li>Trage Board, WLAN und MQTT ein und speichere.</li>
+    </ol>
+    <p class="hinweis">Anschluss des Sensors, Pins je Board und Fehlersuche stehen in der Anleitung (README).</p>
+    <p class="en">The board opens an open WiFi network called <code>SHT45-Setup-…</code>. Connect, open <code>http://192.168.4.1</code> if needed, enter board, WiFi and MQTT, and save. Wiring, pins per board and troubleshooting are in the README.</p>
+  </section>
+</main>
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+</body>
+</html>
