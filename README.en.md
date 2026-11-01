@@ -120,7 +120,7 @@ The numbers in the table are GPIO numbers. How the pin is labelled on your board
 | WEMOS LOLIN D32 Pro | GPIO21 | GPIO22 |
 | ESP32-S3 N16R8 | GPIO8 | GPIO9 |
 | DFRobot Beetle ESP32-C6 | GPIO19 | GPIO20 |
-| ESP32-C6 DevKitC-1 | GPIO23 | GPIO22 |
+| ESP32-C6-DevKitC-1 (Espressif C6 board) | GPIO23 | GPIO22 |
 | NodeMCU v3 (ESP8266) | D2 = GPIO4 | D1 = GPIO5 |
 | Wemos D1 mini (ESP8266) | D2 = GPIO4 | D1 = GPIO5 |
 
@@ -176,12 +176,12 @@ Instead of your WiFi, the board reports its values over Zigbee, a radio standard
 ### What else you need
 
 - A **Zigbee network with a coordinator** at which you can pair new devices. The version has been tested only with Zigbee2MQTT (version 2.5.1) and a Sonoff Zigbee 3.0 USB Dongle Plus on Home Assistant. Other coordinators (for example ZHA) are untested.
-- The ESP32-C6, the sensor and the jumper wires as in part B. WiFi is not needed.
+- A board with the **ESP32-C6** chip. An ordinary ESP32 (for example the "ESP32 DevKit C1" board), an ESP32-S3 or an ESP8266 cannot use this version, the file is built for the C6 only. Also the sensor and the jumper wires as in part B. WiFi is not needed.
 
 ### Step by step
 
 1. **Flash it:** As in part A, but click the **Connect** button under "Zigbee (nur ESP32-C6)" on the installation page. The dialog is then called "SHT45 Zigbee (ESP32-C6)". Tick **Erase device** in the dialog, especially if the board carried the WiFi version before.
-2. **Connect the sensor:** As in step 5. The Zigbee version has no setup window in which you can choose pins. It looks for the sensor only on these two pin pairs: DFRobot Beetle ESP32-C6 (SDA GPIO19, SCL GPIO20) and ESP32-C6 DevKitC-1 (SDA GPIO23, SCL GPIO22). If the sensor is wired elsewhere, it is not found.
+2. **Connect the sensor:** As in step 5. The Zigbee version has no setup window in which you can choose pins. It looks for the sensor only on these two pin pairs: DFRobot Beetle ESP32-C6 (SDA GPIO19, SCL GPIO20) and ESP32-C6-DevKitC-1 (SDA GPIO23, SCL GPIO22; this is Espressif's C6 board, not the ordinary ESP32 DevKit C1). If the sensor is wired elsewhere, it is not found.
 3. **Pair it:** Switch on pairing in Zigbee2MQTT ("Permit join"; in Home Assistant the switch is called "Zigbee2MQTT Bridge Permit join"). Plug in the USB cable. The board looks for the network by itself and usually joins within about a minute. Switch pairing off again afterwards.
 4. **Check:** A new device appears in Zigbee2MQTT. It is first named after its address (it starts with `0x`). Zigbee2MQTT calls it "not supported" ("Automatically generated definition"). That is normal, the values arrive anyway. The board reports temperature and humidity once a minute. In Home Assistant two sensors appear, temperature and humidity, also with the address in the name. You can rename the device in Zigbee2MQTT.
 5. **Reset:** Holding the BOOT button for three seconds resets the board to factory settings, and it looks for a new network.

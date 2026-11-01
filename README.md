@@ -120,7 +120,7 @@ Die Nummern in der Tabelle sind GPIO-Nummern. Wie der Anschluss auf deinem Board
 | WEMOS LOLIN D32 Pro | GPIO21 | GPIO22 |
 | ESP32-S3 N16R8 | GPIO8 | GPIO9 |
 | DFRobot Beetle ESP32-C6 | GPIO19 | GPIO20 |
-| ESP32-C6 DevKitC-1 | GPIO23 | GPIO22 |
+| ESP32-C6-DevKitC-1 (C6-Board von Espressif) | GPIO23 | GPIO22 |
 | NodeMCU v3 (ESP8266) | D2 = GPIO4 | D1 = GPIO5 |
 | Wemos D1 mini (ESP8266) | D2 = GPIO4 | D1 = GPIO5 |
 
@@ -176,12 +176,12 @@ Statt über dein WLAN meldet das Board seine Werte per Zigbee, einem Funkstandar
 ### Das brauchst du zusätzlich
 
 - Ein **Zigbee-Netz mit einer Zentrale**, an der du neue Geräte anlernen kannst. Getestet ist die Version nur mit Zigbee2MQTT (Version 2.5.1) und einem Sonoff-Zigbee-3.0-USB-Dongle-Plus an Home Assistant. Andere Zentralen (zum Beispiel ZHA) sind nicht geprüft.
-- Den ESP32-C6, den Sensor und die Steckkabel wie in Teil B. WLAN ist nicht nötig.
+- Ein Board mit dem Chip **ESP32-C6**. Ein normaler ESP32 (zum Beispiel das Board „ESP32 DevKit C1“), ein ESP32-S3 oder ein ESP8266 kann diese Version nicht nutzen, die Datei ist nur für den C6 gebaut. Dazu der Sensor und die Steckkabel wie in Teil B. WLAN ist nicht nötig.
 
 ### Schritt für Schritt
 
 1. **Aufspielen:** Wie in Teil A, klicke aber auf der Installationsseite den Knopf **Connect** bei „Zigbee (nur ESP32-C6)“. Der Dialog heißt dann „SHT45 Zigbee (ESP32-C6)“. Setze im Dialog das Häkchen **Erase device**, besonders wenn auf dem Board vorher die WLAN-Version war.
-2. **Sensor anschließen:** Wie in Schritt 5. Die Zigbee-Version hat kein Einrichtungsfenster, in dem du Pins wählen kannst. Sie sucht den Sensor nur an diesen zwei Anschlusspaaren: DFRobot Beetle ESP32-C6 (SDA GPIO19, SCL GPIO20) und ESP32-C6 DevKitC-1 (SDA GPIO23, SCL GPIO22). Hängt der Sensor woanders, wird er nicht gefunden.
+2. **Sensor anschließen:** Wie in Schritt 5. Die Zigbee-Version hat kein Einrichtungsfenster, in dem du Pins wählen kannst. Sie sucht den Sensor nur an diesen zwei Anschlusspaaren: DFRobot Beetle ESP32-C6 (SDA GPIO19, SCL GPIO20) und ESP32-C6-DevKitC-1 (SDA GPIO23, SCL GPIO22; das ist das C6-Board von Espressif, nicht der normale ESP32 DevKit C1). Hängt der Sensor woanders, wird er nicht gefunden.
 3. **Anlernen:** Schalte in Zigbee2MQTT das Anlernen ein („Permit join“; in Home Assistant heißt der Schalter „Zigbee2MQTT Bridge Permit join“). Stecke das USB-Kabel an. Das Board sucht das Netz selbst und tritt meist innerhalb von etwa einer Minute bei. Schalte das Anlernen danach wieder aus.
 4. **Prüfen:** In Zigbee2MQTT erscheint ein neues Gerät. Es heißt zunächst nach seiner Adresse (sie beginnt mit `0x`). Zigbee2MQTT nennt es „nicht unterstützt“ („Automatically generated definition“). Das ist normal, die Werte kommen trotzdem an. Das Board meldet einmal pro Minute Temperatur und Luftfeuchte. In Home Assistant erscheinen zwei Sensoren, Temperatur und Luftfeuchtigkeit, ebenfalls mit der Adresse im Namen. Du kannst das Gerät in Zigbee2MQTT umbenennen.
 5. **Zurücksetzen:** Hältst du die Taste BOOT drei Sekunden gedrückt, setzt sich das Board auf Werkseinstellung zurück und sucht ein neues Netz.

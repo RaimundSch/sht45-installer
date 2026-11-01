@@ -58,7 +58,7 @@
     </div>
     <div class="version">
       <h3>Zigbee (nur ESP32-C6)</h3>
-      <p class="hinweis">Das Board tritt einem vorhandenen Zigbee-Netz bei (getestet mit Zigbee2MQTT) und braucht kein WLAN.</p>
+      <p class="hinweis">Das Board tritt einem vorhandenen Zigbee-Netz bei (getestet mit Zigbee2MQTT) und braucht kein WLAN. Nur für Boards mit dem Chip ESP32-C6, nicht für einen normalen ESP32.</p>
       <div class="knopf">
         <esp-web-install-button manifest="manifest-zigbee.json"></esp-web-install-button>
       </div>
@@ -80,9 +80,9 @@
       <li>Öffne <code>http://192.168.4.1</code>, falls sich die Seite nicht von selbst öffnet.</li>
       <li>Trage Board, WLAN und MQTT ein und speichere.</li>
     </ol>
-    <p class="hinweis"><strong>Zigbee-Version:</strong> Es gibt kein Einrichtungs-WLAN und kein Formular. Schalte in Zigbee2MQTT das Anlernen ein („Permit join“) und versorge das Board mit Strom. Es sucht das Netz selbst und tritt meist innerhalb von etwa einer Minute bei. Der Sensor muss an GPIO19 und GPIO20 (DFRobot Beetle ESP32-C6) oder an GPIO23 und GPIO22 (ESP32-C6 DevKitC-1) hängen, andere Anschlüsse findet die Zigbee-Version nicht. Hältst du die Taste BOOT drei Sekunden gedrückt, setzt sich das Board auf Werkseinstellung zurück und sucht ein neues Netz.</p>
+    <p class="hinweis"><strong>Zigbee-Version:</strong> Es gibt kein Einrichtungs-WLAN und kein Formular. Schalte in Zigbee2MQTT das Anlernen ein („Permit join“) und versorge das Board mit Strom. Es sucht das Netz selbst und tritt meist innerhalb von etwa einer Minute bei. Der Sensor muss mit SDA an GPIO19 und SCL an GPIO20 (DFRobot Beetle ESP32-C6) oder mit SDA an GPIO23 und SCL an GPIO22 (ESP32-C6-DevKitC-1, nicht der normale ESP32 DevKit C1) hängen, andere Anschlüsse findet die Zigbee-Version nicht. Hältst du die Taste BOOT drei Sekunden gedrückt, setzt sich das Board auf Werkseinstellung zurück und sucht ein neues Netz.</p>
     <p class="hinweis"><a href="https://github.com/RaimundSch/sht45-installer#readme">Ausführliche Anleitung Schritt für Schritt</a> (Aufspielen, Anschluss des Sensors, Pins je Board, Zigbee-Version, Fehlersuche) · <a href="https://github.com/RaimundSch/sht45-installer/blob/main/README.en.md">English guide</a></p>
-    <p class="en">The board opens an open WiFi network called <code>SHT45-Setup-…</code>. Connect, open <code>http://192.168.4.1</code> if needed, enter board, WiFi and MQTT, and save. Zigbee version: there is no setup network and no form. Switch on pairing in Zigbee2MQTT ("Permit join") and power the board, it usually joins within about a minute. The sensor must be on GPIO19 and GPIO20 (DFRobot Beetle ESP32-C6) or on GPIO23 and GPIO22 (ESP32-C6 DevKitC-1), the Zigbee version does not find other pins. Holding BOOT for three seconds resets it to factory settings. Wiring, pins per board and troubleshooting are in the README.</p>
+    <p class="en">The board opens an open WiFi network called <code>SHT45-Setup-…</code>. Connect, open <code>http://192.168.4.1</code> if needed, enter board, WiFi and MQTT, and save. Zigbee version: there is no setup network and no form. Switch on pairing in Zigbee2MQTT ("Permit join") and power the board, it usually joins within about a minute. The sensor must have SDA on GPIO19 and SCL on GPIO20 (DFRobot Beetle ESP32-C6) or SDA on GPIO23 and SCL on GPIO22 (ESP32-C6-DevKitC-1, not the ordinary ESP32 DevKit C1), the Zigbee version does not find other pins. Holding BOOT for three seconds resets it to factory settings. Wiring, pins per board and troubleshooting are in the README.</p>
   </section>
 </main>
 <script type="module" src="esp-web-tools/install-button.js"></script>
