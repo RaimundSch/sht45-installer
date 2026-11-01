@@ -8,6 +8,8 @@ This guide shows step by step how to put the firmware on your ESP board. All you
 
 After that (part B) you connect the sensor, set up the device through its own WiFi network and add it to Home Assistant.
 
+The ESP32-C6 can alternatively run with **Zigbee** instead of WiFi and MQTT. The installation page has its own button for it, see part C.
+
 ## Part A: install the firmware
 
 ### What you need
@@ -28,7 +30,7 @@ You do **not** need to know which chip your board has. The page detects it and p
 ### Step 2: open the installation page
 
 1. In Chrome or Edge, open this address: **https://raimundsch.github.io/sht45-installer/**
-2. You see the page "SHT45 installieren" with the button **Connect**.
+2. You see the page "SHT45 installieren" with two **Connect** buttons. The upper one, "WLAN und MQTT" (WiFi and MQTT), is for all boards and is the path of this guide. The lower one, "Zigbee (nur ESP32-C6)" (ESP32-C6 only), belongs to part C.
 
 A message instead of the button?
 
@@ -37,7 +39,7 @@ A message instead of the button?
 
 ### Step 3: choose the port
 
-1. Click **Connect**.
+1. Click the **Connect** button under "WLAN und MQTT".
 2. The browser opens its own window with the list of serial ports. The text of that window depends on the browser and its language.
 3. Choose the entry of your board. It is usually named after the USB chip, for example "USB-SERIAL CH340 (COM3)", "USB-Enhanced-SERIAL CH343 (COM12)" or "Silicon Labs CP210x USB to UART Bridge (COM9)". The number after "COM" is different on every computer. If there is only one entry, it is yours.
 4. Confirm with the button for connecting.
@@ -163,6 +165,18 @@ Read the board's messages: At start the program writes what it finds. With Chrom
 - **The device does not show up in Home Assistant:** Is the MQTT integration set up, and is "Register automatically with Home Assistant" ticked? Does the readings page show MQTT as connected?
 - **The page in your home network is not reachable:** Your router may have changed the IP address. The router's device list shows the current one (the host name starts with `sht45-`).
 
+## Part C: Zigbee version (ESP32-C6 only)
+
+Instead of WiFi and MQTT, the ESP32-C6 can use Zigbee. A board carries only one of the two versions.
+
+1. Flash the file as in part A, but click the **Connect** button under "Zigbee (nur ESP32-C6)" on the installation page. The dialog is then called "SHT45 Zigbee (ESP32-C6)". Tick the erase box if the board is new.
+2. Connect the sensor as in step 5. The pins are the same (DFRobot Beetle SDA 19 / SCL 20, ESP32-C6 DevKitC-1 SDA 23 / SCL 22).
+3. There is **no** setup network and no portal, steps 6 and 7 do not apply. Instead, put your Zigbee network into pairing mode (Zigbee2MQTT: "Permit join") and power the board. It looks for the network and joins by itself. This takes up to a minute. It then reports temperature and humidity once a minute.
+4. Zigbee2MQTT lists the device as "not supported" ("Automatically generated definition"). The values arrive anyway. In Home Assistant the sensors are first named after the board's IEEE address. You can rename the device in Zigbee2MQTT.
+5. Holding the BOOT button for three seconds resets the board to factory settings, and it looks for a new network.
+
+The Zigbee version has been tested only on the DFRobot Beetle ESP32-C6, with Zigbee2MQTT 2.5.1 and a Sonoff Zigbee 3.0 USB Dongle Plus. At the test spot the link quality was about 66 to 93 out of 255. The board joins even with a weak link, because the minimum signal strength for joining is switched off. It has not yet run for several days.
+
 ## Status
 
-The installation page has been run through on the ESP32-S3 (N16R8) and on the ESP32-C6 (DFRobot Beetle) with Chrome, including erasing the memory; on the C6 the setup network opened afterwards. For ESP32 and ESP8266 the page picks the matching file itself according to the documentation of the technology (ESP Web Tools); this has not yet been tried on our own devices. The firmware itself runs on real hardware on all four chips, on the ESP32-C6 with the DFRobot Beetle (sensor on GPIO19 and GPIO20). Still open on the C6: once, in the setup window on a notebook, the display of the IP address did not appear, on a phone it did. The cause is not clear. If you do not see an IP address, look in your router's device list (the name starts with `sht45-`).
+The installation page has been run through on the ESP32-S3 (N16R8) and on the ESP32-C6 (DFRobot Beetle) with Chrome, including erasing the memory; on the C6 the setup network opened afterwards. For ESP32 and ESP8266 the page picks the matching file itself according to the documentation of the technology (ESP Web Tools); this has not yet been tried on our own devices. The firmware itself runs on real hardware on all four chips, on the ESP32-C6 with the DFRobot Beetle (sensor on GPIO19 and GPIO20). Still open on the C6: once, in the setup window on a notebook, the display of the IP address did not appear, on a phone it did. The cause is not clear. If you do not see an IP address, look in your router's device list (the name starts with `sht45-`). The Zigbee version (part C) has been tested on the ESP32-C6 (DFRobot Beetle) with Zigbee2MQTT: joining after erasing the memory, readings every minute in Home Assistant. Flashing this file through the installation page in the browser has not yet been run through.

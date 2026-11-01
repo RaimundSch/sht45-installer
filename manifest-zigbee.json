@@ -1,0 +1,11 @@
+{
+  "name": "SHT45 Zigbee (ESP32-C6)",
+  "version": "2026-11-01",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [{ "path": "firmware/sht45-esp32c6-zigbee.bin", "offset": 0 }]
+    }
+  ]
+}
