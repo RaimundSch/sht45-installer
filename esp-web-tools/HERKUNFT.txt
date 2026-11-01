@@ -1,0 +1,4 @@
+ESP Web Tools 10.4.0, Lizenz Apache-2.0 (siehe LICENSE in diesem Ordner).
+Quelle: https://www.npmjs.com/package/esp-web-tools/v/10.4.0 (Ordner dist/web, unverändert).
+Projekt: https://github.com/esphome/esp-web-tools
+Diese Dateien werden von index.html geladen, damit die Seite keinen fremden Server braucht.
