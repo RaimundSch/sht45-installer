@@ -12,7 +12,7 @@ Danach (Teil B) schließt du den Sensor an, richtest das Gerät über sein eigen
 
 ### Das brauchst du
 
-- Ein Board mit **ESP32**, **ESP32-S3** (Typ N16R8) oder **ESP8266**. Andere Chips (zum Beispiel ESP32-C3, ESP32-S2, ESP32-C6) sind nicht abgedeckt.
+- Ein Board mit **ESP32**, **ESP32-S3** (Typ N16R8), **ESP32-C6** oder **ESP8266**. Andere Chips (zum Beispiel ESP32-C3 oder ESP32-S2) sind nicht abgedeckt.
 - Ein **USB-Datenkabel**. Reine Ladekabel übertragen keine Daten, mit ihnen erscheint das Board später nicht in der Liste.
 - Einen **Computer** mit dem Browser **Google Chrome** oder **Microsoft Edge**. Die Seite ist mit Chrome getestet. Handy und Tablet (Android, iPhone) gehen nicht, das nennt auch der Hersteller der Technik (ESP Web Tools).
 - Eine Internetverbindung, solange du die Seite benutzt.
@@ -58,7 +58,7 @@ Nach der Wahl öffnet sich ein Dialog. Sein Name ist „SHT45 mit MQTT und Home 
    - **Nur die Firmware erneuern:** Lasse das Kästchen leer. Dann wird der Speicher nicht gelöscht. Öffnet das Board danach trotzdem sein Einrichtungs-WLAN, trage WLAN und MQTT einfach noch einmal ein (Teil B).
 3. Klicke auf **Next**.
 4. Die Seite „**Confirm Installation**“ fragt: „Do you want to install SHT45 mit MQTT und Home Assistant 2026-10-29?“ (die Zahl ist die Version). Steht dort „All data on the device will be erased.“, hast du das Häkchen gesetzt. Klicke auf **Install**.
-5. Jetzt läuft die Installation. Du siehst nacheinander „Preparing installation“, bei gesetztem Häkchen „Erasing“, dann einen Fortschrittsbalken mit Prozentzahl. Dazu steht, wie lange es dauert: **etwa eine Minute beim ESP8266, etwa zwei Minuten bei ESP32 und ESP32-S3.**
+5. Jetzt läuft die Installation. Du siehst nacheinander „Preparing installation“, bei gesetztem Häkchen „Erasing“, dann einen Fortschrittsbalken mit Prozentzahl. Dazu steht, wie lange es dauert: **etwa eine Minute beim ESP8266, etwa zwei Minuten bei ESP32, ESP32-S3 und ESP32-C6.**
 6. **Lass die Seite während der Installation sichtbar** (Fenster nicht minimieren, nicht auf einen anderen Tab wechseln). Der Dialog weist selbst darauf hin: „Keep this page visible to prevent slow down“. Ziehe das Kabel nicht ab.
 7. Am Ende steht **Installation complete!** mit einem Konfetti-Symbol. Klicke auf **Next**.
 
@@ -113,6 +113,8 @@ Die Nummern in der Tabelle sind GPIO-Nummern. Wie der Anschluss auf deinem Board
 | M5Stack Core2, Port A | GPIO32 | GPIO33 |
 | WEMOS LOLIN D32 Pro | GPIO21 | GPIO22 |
 | ESP32-S3 N16R8 | GPIO8 | GPIO9 |
+| DFRobot Beetle ESP32-C6 | GPIO19 | GPIO20 |
+| ESP32-C6 DevKitC-1 | GPIO23 | GPIO22 |
 | NodeMCU v3 (ESP8266) | D2 = GPIO4 | D1 = GPIO5 |
 | Wemos D1 mini (ESP8266) | D2 = GPIO4 | D1 = GPIO5 |
 
@@ -163,4 +165,4 @@ Lies die Meldungen des Boards: Das Programm schreibt beim Start, was es findet. 
 
 ## Stand
 
-Die Installationsseite ist am ESP32-S3 (N16R8) mit Chrome durchgespielt, einschließlich Löschen des Speichers. Für ESP32 und ESP8266 wählt die Seite laut Dokumentation der Technik (ESP Web Tools) die passende Datei selbst, an eigenen Geräten ausprobiert ist das hier noch nicht. Die Firmware selbst läuft auf allen drei Chips auf echter Hardware.
+Die Installationsseite ist am ESP32-S3 (N16R8) mit Chrome durchgespielt, einschließlich Löschen des Speichers. Für ESP32, ESP32-C6 und ESP8266 wählt die Seite laut Dokumentation der Technik (ESP Web Tools) die passende Datei selbst, an eigenen Geräten ausprobiert ist das hier noch nicht. Die Firmware selbst läuft auf allen vier Chips auf echter Hardware, auf dem ESP32-C6 mit dem DFRobot Beetle (Sensor an GPIO19 und GPIO20). Beim C6 ist die Datei der Installationsseite noch nicht auf einem Gerät aufgespielt worden. Offen beim C6: Im Einrichtungsfenster am Notebook blieb die Anzeige der IP-Adresse einmal aus, am Handy kam sie an. Die Ursache ist nicht geklärt. Wenn du keine IP siehst, schau in der Geräteliste deines Routers nach (der Name beginnt mit `sht45-`).

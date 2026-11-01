@@ -12,6 +12,10 @@
       "parts": [{ "path": "firmware/sht45-esp32s3.bin", "offset": 0 }]
     },
     {
+      "chipFamily": "ESP32-C6",
+      "parts": [{ "path": "firmware/sht45-esp32c6.bin", "offset": 0 }]
+    },
+    {
       "chipFamily": "ESP8266",
       "parts": [{ "path": "firmware/sht45-esp8266.bin", "offset": 0 }]
     }
